@@ -1,0 +1,49 @@
+server:
+  port: 8085
+
+spring:
+  application:
+    name: API-GATWAY
+  
+  cloud:
+    gateway:
+      routes:
+        - id: SHOPPING-SERVICE
+          uri: lb://SHOPPING-SERVICE
+          predicates: 
+            - Path= /api/shoppingservice/**
+        
+        #- id: CART-SERVICE
+          #uri: lb://CART-SERVICE
+          #predicates: 
+            #- Path= /**
+            
+        #- id: CUSTOMER-SERVICE
+          #uri: lb://CUSTOMER-SERVICE
+          #predicates: 
+            #- Path= /**
+            
+        #- id: INVENTORY-SERVICE
+          #uri: lb://INVENTORY-SERVICE
+          #predicates: 
+            #- Path= /** 
+           
+        #- id: ORDER-SERVICE
+          #uri: lb://ORDER-SERVICE
+          #predicates: 
+            #- Path= /**
+            
+        #- id: PRODUCT-SERVICE
+          #uri: lb://PRODUCT-SERVICE
+          #predicates: 
+            #- Path= /**           
+             
+eureka:
+  instance:
+    prefer-ip-address: true
+    hostname: localhost
+  client:
+    service-url:
+       defaultZone: http://localhost:8761/eureka/
+    fetch-registry: true
+    register-with-eureka: true

@@ -1,0 +1,12 @@
+{"properties": [
+  {
+    "name": "servlet.multipart.enabled",
+    "type": "java.lang.String",
+    "description": "A description for 'servlet.multipart.enabled'"
+  },
+  {
+    "name": "file.upload-dir",
+    "type": "java.lang.String",
+    "description": "A description for 'file.upload-dir'"
+  }
+]}

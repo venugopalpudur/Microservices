@@ -1,0 +1,78 @@
+spring:
+  application:
+    name: REGISTRATION-SERVICE
+    
+  config:
+    import: optional:configserver:http://localhost:8086
+     
+   
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: upload02.sdcard@gmail.com
+    password: ngoghqgehuducxqf
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+          connectiontimeout: 5000
+          timeout: 3000
+          writetimeout: 5000
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 2KB
+      max-file-size: 50MB
+      max-request-size: 50MB
+
+  
+      
+#eureka:
+#  instance:
+#    #lease-renewal-interval-in-seconds: 1
+#    #lease-expiration-duration-in-seconds: 2
+#    hostname: localhost
+#  client:
+#    service-url:
+#       defaultZone: http://localhost:8761/eureka/
+#    healthcheck:
+#      enabled: true
+#    lease:
+#      duration:5
+  
+    
+management:
+  security:
+    enabled: false
+  health:
+    circuitbreakers:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health
+       
+  endpoint:
+    health:
+      show-details: always
+      
+resilience4j:
+  circuitbreaker:
+    instances: 
+      EMAIL-SERVICE:
+        registerHealthIndicator: true
+        eventConsumerBufferSize: 10
+        failureRateThreshold: 50
+        minimumNumberOfCalls: 5
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        waitDurationInOpenState: 5s
+        permittedNumberOfCallsInHalfOpenState: 3
+        slidingWindowSize: 10
+        slidingWindowType: COUNT_BASED
+
+    
+  
+
+

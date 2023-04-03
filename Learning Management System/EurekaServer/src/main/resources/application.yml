@@ -1,0 +1,10 @@
+
+  
+spring:
+  application:
+    name: LEARNING-SERVER
+  
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
